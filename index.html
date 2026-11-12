@@ -180,7 +180,7 @@ footer a{color:#fff;}
   <div class="wide">
     <img src="./assets/horus-light.png" alt="">
     <p class="big">"Scattered brilliance into a <em>living library</em>."</p>
-    <p class="by">More on the way · The prayer cards are next</p>
+    <p class="by">More on the way</p>
   </div>
 </section>
 
@@ -223,7 +223,7 @@ const ART = {
   road: `<svg viewBox="0 0 300 190"><rect x="70" y="18" width="160" height="154" fill="#17130F" stroke="#C9A25A" stroke-width="1.6"/><rect x="77" y="25" width="146" height="140" fill="none" stroke="#C9A25A" stroke-opacity=".4"/><text x="150" y="56" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="17" letter-spacing="1" fill="#ECE3D0">THE BOURDAIN</text><text x="150" y="80" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="22" letter-spacing="2" fill="#C9A25A">ROAD</text>${[0,1,2,3].map(i=>`<line x1="92" x2="${146-i*6}" y1="${102+i*15}" y2="${102+i*15}" stroke="#ECE3D0" stroke-opacity=".3" stroke-width="2.4" stroke-linecap="round"/><line x1="${150-i*6}" x2="186" y1="${102+i*15}" y2="${102+i*15}" stroke="#ECE3D0" stroke-opacity=".2" stroke-dasharray="1 4"/><rect x="194" y="${96+i*15}" width="11" height="11" fill="none" stroke="${i<2?'#B8402E':'#ECE3D0'}" stroke-opacity="${i<2?1:.4}"/>`).join('')}<path d="M203.6 98.3c-.5-.3-1.1 0-1.4.6-1 2-2.9 3.7-5.3 4.4-.7.2-.9 1-.2 1.4 2.4 1.1 5.4-.3 6.7-2.8.7-1.3.8-2.9.2-3.6z" fill="#B8402E"/><path d="M203.6 113.3c-.5-.3-1.1 0-1.4.6-1 2-2.9 3.7-5.3 4.4-.7.2-.9 1-.2 1.4 2.4 1.1 5.4-.3 6.7-2.8.7-1.3.8-2.9.2-3.6z" fill="#B8402E"/></svg>`,
   fours: `<svg viewBox="0 0 300 190"><circle cx="150" cy="95" r="74" fill="none" stroke="#D9A648" stroke-opacity=".45" stroke-dasharray="2 5"/>${[0,1,2,3].map(r=>[0,1,2,3].map(c=>`<circle cx="${105+c*30}" cy="${50+r*30}" r="${r===c?7:4.5}" fill="${['#D9A648','#3FA86A','#2C5FC4','#D58A9B'][r]}" fill-opacity="${r===c?1:.55}"/>`).join('')).join('')}</svg>`,
   purge: `<svg viewBox="0 0 300 190"><circle cx="150" cy="104" r="64" fill="#E8732A" fill-opacity=".12"/><rect x="98" y="112" width="104" height="58" rx="3" fill="#2A1130" stroke="#D9A648" stroke-width="1.6"/><path d="M98 113 L150 146 L202 113" fill="none" stroke="#D9A648" stroke-width="1.4"/><path d="M150 104 C 128 92 128 66 142 50 C 142 64 150 70 154 70 C 150 56 158 38 170 28 C 166 46 182 58 180 80 C 179 96 166 106 150 104Z" fill="#E8732A" fill-opacity=".85"/><path d="M152 102 C 140 96 140 82 148 72 C 150 82 158 84 160 92 C 162 98 158 102 152 102Z" fill="#F7D46A"/><text x="150" y="184" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" letter-spacing="3" fill="#D9A648" fill-opacity=".8">7 · 14 · 21</text></svg>`,
-  prayer: `<svg viewBox="0 0 300 190"><rect x="104" y="26" width="92" height="140" rx="8" fill="none" stroke="#E7E7E7" stroke-opacity=".35" stroke-dasharray="4 6"/><path d="M150 70 c-6 14 -6 30 0 44 c6 -14 6 -30 0 -44z" fill="#D9A648" fill-opacity=".7"/><path d="M150 112 c-18 -6 -28 -18 -30 -32 c14 4 26 14 30 32z M150 112 c18 -6 28 -18 30 -32 c-14 4 -26 14 -30 32z" fill="#D9A648" fill-opacity=".4"/></svg>`
+  prayer: `<svg viewBox="0 0 300 190">${[-30,-15,0,15,30].map((r,i)=>`<g transform="rotate(${r} 150 330)"><rect x="122" y="40" width="56" height="78" rx="5" fill="#152649" stroke="#D9A648" stroke-opacity="${i===2?'.95':'.6'}"/><circle cx="150" cy="79" r="13" fill="none" stroke="#D9A648" stroke-opacity="${i===2?'.9':'.45'}"/><circle cx="150" cy="79" r="2.5" fill="#D9A648" fill-opacity="${i===2?'.9':'.5'}"/></g>`).join('')}</svg>`
 };
 
 /* Every page, by room. Links are the live GitHub Pages addresses. */
@@ -236,7 +236,8 @@ const ROOMS = [
    {t:'The 21-Day Purge Journal', k:'A practice · Free', d:'Clear the noise, hear your soul. Five to fifteen minutes a day, a fire every seven, a tracker and timer, the despacho behind the fire, and a Day 21 note to tell me how you sleep now.', u:'purge-journal/', art:'purge', a:'#E8732A', g1:'rgba(232,115,42,.3)', g2:'#2A1130', isNew:true},
    {t:'The Chakras', k:'Interactive teaching', d:'Seven lotus flowers. Flowing, blocked and the practice for every center, and a check-in for where you are right now.', u:'chakras/', art:'chakras', a:'#9B5FD0', g1:'rgba(155,95,208,.35)', g2:'#22102A'},
    {t:'The Living Arcana', k:'Field guide', d:'Eighteen sacred roles matched to the tarot, a five-level ladder, and a Reading that ends in a three-card spread.', u:'living-arcana/', art:'arcana', a:'#E58BB0', g1:'rgba(229,139,176,.3)', g2:'#2A1130'},
-   {t:'Ground First', k:'A practice', d:'Grounding and protection. The practice to do before anything else.', u:'ground-first/', art:'ground', a:'#C8242B', g1:'rgba(200,36,43,.3)', g2:'#22102A', open:true}
+   {t:'Ground First', k:'A practice', d:'Grounding and protection. The practice to do before anything else.', u:'ground-first/', art:'ground', a:'#C8242B', g1:'rgba(200,36,43,.3)', g2:'#22102A', open:true},
+   {t:'The Prayer Cards', k:'A deck · Pick one', d:'The prayers, mantras and invocations I say, made into cards and spread out like a deck. Hover for the name, turn one over, open it for the prayer and who wrote it.', u:'prayer-cards/', art:'prayer', a:'#D9A648', g1:'rgba(217,166,72,.3)', g2:'#1B0C20', isNew:true}
   ]},
  {id:'writings', name:'Stories Sashimi', em:'words served raw', glyph:'scarab', c:'#F2C230',
   dek:'Articles, essays and long-form stories. The writing, kept in its own room, apart from the teachings.',
@@ -288,8 +289,7 @@ const ROOMS = [
   dek:'How the collaboration actually works. The commands, and the playbook for talking to SAGE.',
   cards:[
    {t:'The SAGE Codex', k:'Command reference', d:'Every command and prompt, and when to reach for it.', u:'sage-codex/', art:'codex', a:'#F7D46A', g1:'rgba(247,212,106,.22)', g2:'#22102A'},
-   {t:'Talking to SAGE', k:'The playbook', d:'How to talk to SAGE so the work comes out right.', u:'talking-to-sage/', art:'talk', a:'#E58BB0', g1:'rgba(229,139,176,.28)', g2:'#2A1130'},
-   {t:'Prayer Cards', k:'Coming next', d:'The prayers, mantras and invocations, made into cards.', art:'prayer', a:'#D9A648', g1:'rgba(217,166,72,.12)', g2:'#1B0C20', soon:true}
+   {t:'Talking to SAGE', k:'The playbook', d:'How to talk to SAGE so the work comes out right.', u:'talking-to-sage/', art:'talk', a:'#E58BB0', g1:'rgba(229,139,176,.28)', g2:'#2A1130'}
   ]}
 ];
 

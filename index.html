@@ -86,6 +86,13 @@ h2 em{font-style:italic;color:var(--c);}
 .room-head p{margin:12px 0 0;color:rgba(231,231,231,.66);max-width:36em;}
 .room-head .count{font-family:var(--display);font-size:3.6rem;line-height:1;color:rgba(231,231,231,.16);}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.storylist{list-style:none;margin:0;padding:0;max-width:640px;}
+.storylist li{border-bottom:1px solid rgba(231,231,231,.12);}
+.storylist a{display:grid;grid-template-columns:1fr auto;align-items:baseline;column-gap:1.2rem;padding:16px 0;text-decoration:none;color:var(--mirror);}
+.storylist .st{font-family:var(--display);font-size:1.45rem;line-height:1.2;color:#fff;text-decoration:underline;text-decoration-color:var(--ankh-hi);text-decoration-thickness:1px;text-underline-offset:5px;}
+.storylist .st i{font-style:normal;color:var(--ankh-hi);}
+.storylist .sw{font-family:var(--head);font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ankh-hi);white-space:nowrap;}
+.storylist a:hover .st,.storylist a:focus-visible .st{color:var(--ankh-hi);}
 
 .card{
   display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#22102A;border:1px solid rgba(231,231,231,.08);
@@ -239,10 +246,11 @@ const ROOMS = [
    {t:'Ground First', k:'A practice', d:'Grounding and protection. The practice to do before anything else.', u:'ground-first/', art:'ground', a:'#C8242B', g1:'rgba(200,36,43,.3)', g2:'#22102A', open:true},
    {t:'The Prayer Cards', k:'A deck · Pick one', d:'The prayers, mantras and invocations I say, made into cards and spread out like a deck. Hover for the name, turn one over, open it for the prayer and who wrote it.', u:'prayer-cards/', art:'prayer', a:'#D9A648', g1:'rgba(217,166,72,.3)', g2:'#1B0C20', isNew:true}
   ]},
- {id:'writings', name:'Stories Sashimi', em:'words served raw', glyph:'scarab', c:'#F2C230',
-  dek:'Articles, essays and long-form stories. The writing, kept in its own room, apart from the teachings.',
+ {id:'writings', name:'Stories Sashimi', em:'words served raw', glyph:'scarab', c:'#F2C230', list:true,
+  dek:'Articles, media and other musings.',
   cards:[
-   {t:'Soul Over Salary', k:'Long-form story', d:'A long-form story, in my own words, about the life that looked perfect on paper.', u:'soul-over-salary/', art:'sos', a:'#F2C230', g1:'rgba(242,194,48,.25)', g2:'#2A1130'}
+   {t:'Fill Your Own Cup', when:'November 2026', u:'https://www.cahager.com/fill-your-own-cup/'},
+   {t:'Soul Over Salary', when:'October 2026', u:'soul-over-salary/'}
   ]},
  {id:'self', name:'Know Thyself', em:'the chart', glyph:'horus', c:'#5FC0AE',
   dek:'My own design, read three ways and woven into one story. Astrology, Human Design and the Gene Keys.',
@@ -307,6 +315,9 @@ function card(c){
   return c.soon ? `<div class="card soon" style="--a:${c.a}">${inner}</div>`
     : `<a class="card${c.feature?' feature':''}" href="${/^https?:/.test(c.u)?'':B}${c.u}" style="--a:${c.a}">${inner}</a>`;
 }
+function story(c){
+  return `<li><a href="${/^https?:/.test(c.u)?'':B}${c.u}"><span class="st">${c.t} <i>&rarr;</i></span><span class="sw">${c.when}</span></a></li>`;
+}
 $('#rooms').innerHTML = ROOMS.map(r => `
   <section class="room" id="${r.id}" style="--c:${r.c}">
     <div class="wide">
@@ -314,7 +325,7 @@ $('#rooms').innerHTML = ROOMS.map(r => `
         <div><p class="eyebrow"><img src="./assets/${r.glyph}-light.png" alt="">${r.name}</p><h2>${r.name.replace(/^The /,'The ')} <em>· ${r.em}</em></h2><p>${r.dek}</p></div>
         <div class="count">${String(r.cards.filter(c=>!c.soon).length).padStart(2,'0')}</div>
       </div>
-      <div class="grid">${r.cards.map(card).join('')}</div>
+      ${r.list ? `<ul class="storylist">${r.cards.map(story).join('')}</ul>` : `<div class="grid">${r.cards.map(card).join('')}</div>`}
     </div>
   </section>`).join('');
 
